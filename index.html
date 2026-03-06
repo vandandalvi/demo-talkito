@@ -3,1140 +3,346 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talkito AI - Coming Soon | AI Interview Coach</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Talkito AI - AI Interview Coach | Launching May 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #14b8a6;
-            --primary-dark: #0d9488;
-            --secondary: #06b6d4;
-            --accent: #22d3ee;
-            --dark: #1a1a2e;
-            --darker: #16213e;
-            --light: #f8fafc;
-            --gradient-1: linear-gradient(135deg, #14b8a6 0%, #0891b2 100%);
-            --gradient-2: linear-gradient(135deg, #06b6d4 0%, #0284c7 100%);
-            --gradient-3: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%);
-            --gradient-hero: linear-gradient(135deg, #14b8a6 0%, #0891b2 50%, #06b6d4 100%);
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--dark);
-            color: var(--light);
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        /* Animated Background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
-            overflow: hidden;
-        }
-
-        .bg-animation::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(20, 184, 166, 0.1) 0%, transparent 50%);
-            animation: rotate 30s linear infinite;
-        }
-
-        .bg-animation::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2314b8a6' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* Floating Orbs */
-        .orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.5;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: var(--primary);
-            top: -100px;
-            right: -100px;
-            animation-delay: 0s;
-        }
-
-        .orb-2 {
-            width: 300px;
-            height: 300px;
-            background: var(--secondary);
-            bottom: -50px;
-            left: -50px;
-            animation-delay: -5s;
-        }
-
-        .orb-3 {
-            width: 200px;
-            height: 200px;
-            background: var(--accent);
-            top: 50%;
-            left: 50%;
-            animation-delay: -10s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(50px, -50px) scale(1.1); }
-            50% { transform: translate(-30px, 30px) scale(0.9); }
-            75% { transform: translate(20px, 50px) scale(1.05); }
-        }
-
-        /* Construction Banner */
-        .construction-banner {
-            background: linear-gradient(135deg, #000000 0%, #dc0000 100%);
-            padding: 14px 20px;
-            text-align: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        .construction-banner span {
-            color: white;
-            padding: 0;
-            font-weight: 600;
-            font-size: 0.95rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            letter-spacing: 0.5px;
-        }
-
-        .construction-banner .badge {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .construction-banner .icon {
-            animation: bounce 1s ease infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Header */
-        .header {
-            padding: 80px 0 40px;
-            text-align: center;
-        }
-
-        .logo {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .logo-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-1);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4); }
-            50% { box-shadow: 0 10px 60px rgba(102, 126, 234, 0.6); }
-        }
-
-        .logo-text {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: var(--gradient-hero);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .tagline {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 10px;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 40px 0 80px;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 24px;
-        }
-
-        .hero h1 .highlight {
-            background: var(--gradient-hero);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 700px;
-            margin: 0 auto 40px;
-            line-height: 1.7;
-        }
-
-        /* Countdown */
-        .countdown-section {
-            margin-bottom: 60px;
-        }
-
-        .countdown-label {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .countdown-item {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 24px 32px;
-            min-width: 120px;
-            transition: all 0.3s ease;
-        }
-
-        .countdown-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
-        }
-
-        .countdown-number {
-            font-size: 3rem;
-            font-weight: 800;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .countdown-unit {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* Release Date Badge */
-        .release-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--gradient-1);
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 60px;
-            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4); }
-            to { box-shadow: 0 10px 60px rgba(102, 126, 234, 0.6), 0 0 100px rgba(102, 126, 234, 0.2); }
-        }
-
-        /* Features Preview */
-        .features-section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 16px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1.1rem;
-            margin-bottom: 60px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            padding: 32px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--gradient-1);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(102, 126, 234, 0.3);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .feature-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .feature-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        .feature-card:nth-child(1) .feature-icon { background: linear-gradient(135deg, #667eea, #764ba2); }
-        .feature-card:nth-child(2) .feature-icon { background: linear-gradient(135deg, #f093fb, #f5576c); }
-        .feature-card:nth-child(3) .feature-icon { background: linear-gradient(135deg, #4facfe, #00f2fe); }
-        .feature-card:nth-child(4) .feature-icon { background: linear-gradient(135deg, #43e97b, #38f9d7); }
-        .feature-card:nth-child(5) .feature-icon { background: linear-gradient(135deg, #fa709a, #fee140); }
-        .feature-card:nth-child(6) .feature-icon { background: linear-gradient(135deg, #a8edea, #fed6e3); }
-
-        .feature-card h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .feature-card p {
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.6;
-        }
-
-        .feature-tag {
-            display: inline-block;
-            padding: 4px 12px;
-            background: rgba(102, 126, 234, 0.2);
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin-top: 16px;
-        }
-
-        /* AI Interviewers Preview */
-        .interviewers-section {
-            padding: 80px 0;
-        }
-
-        .interviewers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .interviewer-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            padding: 24px;
-            text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .interviewer-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: var(--primary);
-            box-shadow: 0 30px 60px rgba(102, 126, 234, 0.2);
-        }
-
-        .interviewer-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            position: relative;
-            background: var(--gradient-1);
-            padding: 4px;
-        }
-
-        .interviewer-avatar img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            background: var(--darker);
-        }
-
-        .interviewer-avatar::after {
-            content: '';
-            position: absolute;
-            bottom: 5px;
-            right: 5px;
-            width: 20px;
-            height: 20px;
-            background: #10b981;
-            border-radius: 50%;
-            border: 3px solid var(--darker);
-        }
-
-        .interviewer-card h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .interviewer-role {
-            color: var(--primary);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .interviewer-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-        }
-
-        .interviewer-tags span {
-            padding: 4px 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Screenshots Section */
-        .screenshots-section {
-            padding: 80px 0;
-        }
-
-        .screenshots-intro {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 60px;
-        }
-
-        .screenshots-note {
-            display: inline-block;
-            padding: 12px 24px;
-            background: rgba(102, 126, 234, 0.1);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 50px;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-top: 16px;
-        }
-
-        .screenshots-note .sparkle {
-            display: inline-block;
-        }
-
-        .screenshots-container {
-            display: flex;
-            flex-direction: column;
-            gap: 80px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .screenshot-item {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .screenshot-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .screenshot-item.reverse {
-            direction: rtl;
-        }
-
-        .screenshot-item.reverse > * {
-            direction: ltr;
-        }
-
-        .screenshot-img-wrapper {
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            transition: all 0.4s ease;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .screenshot-item:hover .screenshot-img-wrapper {
-            box-shadow: 0 30px 80px rgba(102, 126, 234, 0.3);
-            border-color: rgba(102, 126, 234, 0.4);
-            transform: scale(1.02);
-        }
-
-        .screenshot-img-wrapper img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .screenshot-content {
-            padding: 20px;
-        }
-
-        .screenshot-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
-
-        .screenshot-content h3 {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 16px;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .screenshot-content p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 20px;
-        }
-
-        .screenshot-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .screenshot-tag {
-            padding: 6px 16px;
-            background: rgba(102, 126, 234, 0.15);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        @media (max-width: 900px) {
-            .screenshot-item {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .screenshot-item.reverse {
-                direction: ltr;
-            }
-
-            .screenshot-content {
-                padding: 0;
-                text-align: center;
-            }
-
-            .screenshot-content h3 {
-                font-size: 1.5rem;
-            }
-
-            .screenshot-tags {
-                justify-content: center;
-            }
-        }
-
-        /* Stats Section */
-        .stats-section {
-            padding: 80px 0;
-            background: rgba(102, 126, 234, 0.05);
-            border-radius: 40px;
-            margin: 40px 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-size: 3rem;
-            font-weight: 900;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 8px;
-        }
-
-        .stat-item p {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1rem;
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 40px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .footer p {
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.9rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            width: 44px;
-            height: 44px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .social-links a:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .countdown-item {
-                min-width: 100px;
-                padding: 16px 20px;
-            }
-
-            .countdown-number {
-                font-size: 2rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .screenshots-container {
-                grid-template-columns: 1fr;
-                max-width: 100%;
-            }
-
-            .screenshot-card {
-                border-radius: 12px;
-            }
-        }
-
-        @media (max-width: 1024px) and (min-width: 769px) {
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Tech Stack Pills */
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 40px;
-        }
-
-        .tech-pill {
-            padding: 8px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.7);
-            transition: all 0.3s ease;
-        }
-
-        .tech-pill:hover {
-            background: rgba(102, 126, 234, 0.2);
-            border-color: var(--primary);
-            color: white;
-        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'Inter',sans-serif;background:#080b14;color:#f1f5f9;overflow-x:hidden;line-height:1.6}
+        :root{--primary:#14b8a6;--primary-light:#5eead4;--secondary:#06b6d4;--dark:#080b14;--dark2:#0d1117;--card-bg:rgba(255,255,255,0.035);--card-border:rgba(255,255,255,0.075);--text:#f1f5f9;--muted:rgba(241,245,249,0.55);--dim:rgba(241,245,249,0.32);--grad:linear-gradient(135deg,#14b8a6 0%,#0891b2 50%,#06b6d4 100%);--grad2:linear-gradient(135deg,#14b8a6 0%,#0891b2 100%);--r-md:20px;--r-lg:28px;--r-xl:40px;--ease:0.3s cubic-bezier(0.4,0,0.2,1)}
+        .bg-canvas{position:fixed;inset:0;z-index:-2;background:radial-gradient(ellipse 120% 80% at 70% 10%,rgba(20,184,166,0.12) 0%,transparent 55%),radial-gradient(ellipse 80% 60% at 20% 80%,rgba(6,182,212,0.10) 0%,transparent 50%),linear-gradient(160deg,#080b14 0%,#0d1117 60%,#0b1120 100%)}
+        .bg-grid{position:fixed;inset:0;z-index:-1;background-image:linear-gradient(rgba(20,184,166,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(20,184,166,0.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%)}
+        .orb{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;animation:orbFloat 20s ease-in-out infinite}
+        .orb-1{width:500px;height:500px;background:rgba(20,184,166,0.18);top:-150px;right:-150px}
+        .orb-2{width:350px;height:350px;background:rgba(6,182,212,0.14);bottom:-80px;left:-80px;animation-delay:-7s}
+        .orb-3{width:250px;height:250px;background:rgba(34,211,238,0.09);top:40%;left:55%;animation-delay:-14s}
+        @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-40px) scale(1.08)}66%{transform:translate(-30px,25px) scale(0.94)}}
+        .ann-bar{position:fixed;top:0;left:0;right:0;z-index:999;background:linear-gradient(90deg,#0d1117,#111827,#0d1117);border-bottom:1px solid rgba(20,184,166,0.2);padding:9px 20px;text-align:center;overflow:hidden}
+        .ann-bar::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(20,184,166,0.06),transparent);animation:shimmer 3s linear infinite}
+        @keyframes shimmer{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+        .ann-inner{display:inline-flex;align-items:center;gap:12px;position:relative;font-size:.82rem;font-weight:600;color:#f1f5f9;letter-spacing:.3px}
+        .pill-red{background:linear-gradient(135deg,#dc2626,#b91c1c);color:#fff;font-size:.68rem;font-weight:800;padding:3px 10px;border-radius:4px;letter-spacing:1px;text-transform:uppercase}
+        .pill-teal{background:rgba(20,184,166,0.15);border:1px solid rgba(20,184,166,0.35);color:#5eead4;font-size:.76rem;font-weight:700;padding:3px 12px;border-radius:20px}
+        .blink-dot{width:6px;height:6px;background:#14b8a6;border-radius:50%;display:inline-block;animation:blink 1.6s ease-in-out infinite}
+        @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+        .navbar{position:sticky;top:38px;z-index:900;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,11,20,0.7);backdrop-filter:blur(20px) saturate(160%);border-bottom:1px solid rgba(255,255,255,0.06);transition:background var(--ease),box-shadow var(--ease)}
+        .navbar.scrolled{background:rgba(8,11,20,0.92);box-shadow:0 4px 30px rgba(0,0,0,0.4)}
+        .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+        .nav-logo-icon{width:38px;height:38px;background:var(--grad2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 4px 16px rgba(20,184,166,0.35)}
+        .nav-logo-text{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .nav-links{display:flex;align-items:center;gap:30px;list-style:none}
+        .nav-links a{font-size:.87rem;font-weight:500;color:var(--muted);text-decoration:none;transition:color var(--ease)}
+        .nav-links a:hover{color:var(--text)}
+        .nav-cta{background:var(--grad2)!important;color:#fff!important;padding:8px 20px;border-radius:8px;font-weight:700!important;box-shadow:0 4px 16px rgba(20,184,166,0.3);transition:transform var(--ease),box-shadow var(--ease)!important}
+        .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(20,184,166,0.45)!important}
+        .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+        .hamburger span{display:block;width:22px;height:2px;background:#f1f5f9;border-radius:2px}
+        .container{max-width:1200px;margin:0 auto;padding:0 24px}
+        .divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(20,184,166,0.22),transparent)}
+        .section-centered{text-align:center;display:flex;flex-direction:column;align-items:center}
+        .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(20,184,166,0.1);border:1px solid rgba(20,184,166,0.3);border-radius:50px;padding:6px 16px;font-size:.74rem;font-weight:700;color:#5eead4;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:18px}
+        .section-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;line-height:1.15;margin-bottom:14px}
+        .section-sub{color:var(--muted);font-size:1.05rem;max-width:560px;line-height:1.75}
+        .section-centered .section-sub{margin:0 auto 56px}
+        .tg{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero{padding:110px 0 80px;text-align:center}
+        .hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(20,184,166,0.08);border:1px solid rgba(20,184,166,0.22);border-radius:50px;padding:8px 20px;font-size:.82rem;font-weight:600;color:#5eead4;margin-bottom:28px}
+        .hero-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.4rem,6.5vw,5rem);font-weight:700;line-height:1.08;letter-spacing:-.02em;margin-bottom:28px;max-width:820px;margin-left:auto;margin-right:auto}
+        .hero-title em{font-style:normal;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-desc{font-size:1.15rem;color:var(--muted);max-width:620px;margin:0 auto 44px;line-height:1.8}
+        .hero-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:64px}
+        .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--grad2);color:#fff;font-weight:700;font-size:.95rem;padding:14px 32px;border-radius:12px;border:none;cursor:pointer;text-decoration:none;animation:btnGlow 2.5s ease-in-out infinite alternate;transition:transform var(--ease)}
+        .btn-primary:hover{transform:translateY(-3px)}
+        @keyframes btnGlow{from{box-shadow:0 8px 32px rgba(20,184,166,0.35)}to{box-shadow:0 12px 48px rgba(20,184,166,0.55),0 0 80px rgba(20,184,166,0.15)}}
+        .btn-ghost{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);color:var(--text);font-weight:600;font-size:.95rem;padding:14px 28px;border-radius:12px;text-decoration:none;transition:all var(--ease)}
+        .btn-ghost:hover{background:rgba(255,255,255,0.09);border-color:rgba(20,184,166,0.4);transform:translateY(-2px)}
+        .hero-stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
+        .hs-num{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hs-label{font-size:.78rem;color:var(--dim);font-weight:500;text-transform:uppercase;letter-spacing:1px;margin-top:3px}
+        .video-section{padding:100px 0;position:relative}
+        .video-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 50%,rgba(20,184,166,0.07) 0%,transparent 65%);pointer-events:none}
+        .vframe-outer{position:relative;max-width:980px;margin:0 auto}
+        .vframe-outer::after{content:'';position:absolute;inset:-44px;background:radial-gradient(ellipse at center,rgba(20,184,166,0.18) 0%,transparent 65%);border-radius:60px;z-index:-1;animation:vglow 3.5s ease-in-out infinite}
+        @keyframes vglow{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.04)}}
+        .vborder{position:absolute;inset:-2px;border-radius:var(--r-lg);background:linear-gradient(135deg,#14b8a6,#0891b2,#22d3ee,#14b8a6);background-size:300% 300%;animation:vspin 5s linear infinite;z-index:0}
+        @keyframes vspin{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+        .vcard{position:relative;z-index:1;background:#080b14;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,0.05),0 50px 100px rgba(0,0,0,0.7),0 20px 40px rgba(20,184,166,0.12)}
+        .chrome-bar{background:#0d1117;border-bottom:1px solid rgba(255,255,255,0.06);padding:12px 20px;display:flex;align-items:center;gap:16px}
+        .chrome-dots{display:flex;gap:6px}
+        .chrome-dots span{width:12px;height:12px;border-radius:50%}
+        .chrome-dots span:nth-child(1){background:#ff5f57}
+        .chrome-dots span:nth-child(2){background:#febc2e}
+        .chrome-dots span:nth-child(3){background:#28c840}
+        .chrome-url{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:5px 14px;font-family:monospace;font-size:.76rem;color:rgba(255,255,255,0.35);display:flex;align-items:center;gap:8px}
+        .chrome-url .lock{color:#14b8a6;font-size:.72rem}
+        .vwrap{position:relative;background:#000;line-height:0}
+        .vwrap video{width:100%;display:block;max-height:560px;object-fit:contain;background:#000}
+        .play-overlay{position:absolute;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;background:rgba(8,11,20,0.5);backdrop-filter:blur(3px);cursor:pointer;transition:opacity .3s ease}
+        .play-overlay.hidden{opacity:0;pointer-events:none}
+        .play-ring{width:88px;height:88px;background:var(--grad2);border-radius:50%;display:flex;align-items:center;justify-content:center;animation:ripple 2s ease-out infinite;transition:transform .2s ease}
+        .play-overlay:hover .play-ring{transform:scale(1.12)}
+        @keyframes ripple{0%{box-shadow:0 0 0 0 rgba(20,184,166,0.55)}70%{box-shadow:0 0 0 24px rgba(20,184,166,0)}100%{box-shadow:0 0 0 0 rgba(20,184,166,0)}}
+        .play-tri{width:0;height:0;border-style:solid;border-width:15px 0 15px 26px;border-color:transparent transparent transparent #fff;margin-left:5px}
+        .vinfo-bar{background:#0d1117;border-top:1px solid rgba(255,255,255,0.06);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+        .vlabel{display:flex;align-items:center;gap:10px;font-size:.85rem;font-weight:600;color:rgba(255,255,255,0.75)}
+        .bdemo{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;font-size:.64rem;font-weight:800;padding:2px 8px;border-radius:4px;letter-spacing:.8px;text-transform:uppercase}
+        .vmeta{display:flex;gap:14px}
+        .vmeta span{font-size:.76rem;color:var(--dim);display:flex;align-items:center;gap:5px}
+        .vfeats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:980px;margin:28px auto 0}
+        .vfeat{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--r-md);padding:20px;display:flex;align-items:flex-start;gap:14px;transition:all var(--ease)}
+        .vfeat:hover{background:rgba(20,184,166,0.07);border-color:rgba(20,184,166,0.3);transform:translateY(-4px);box-shadow:0 16px 40px rgba(20,184,166,0.1)}
+        .vfeat-icon{width:44px;height:44px;border-radius:12px;background:var(--grad2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;box-shadow:0 4px 16px rgba(20,184,166,0.25)}
+        .vfeat-text h4{font-size:.88rem;font-weight:700;margin-bottom:4px}
+        .vfeat-text p{font-size:.77rem;color:var(--dim);line-height:1.55}
+        .int-section{padding:100px 0}
+        .int-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1100px;margin:0 auto}
+        .int-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--r-lg);padding:36px 20px;text-align:center;transition:all .4s ease;position:relative;overflow:hidden}
+        .int-card::after{content:'';position:absolute;inset:0;background:var(--grad);opacity:0;transition:opacity .4s ease;border-radius:var(--r-lg)}
+        .int-card:hover{transform:translateY(-12px);border-color:rgba(20,184,166,0.4);box-shadow:0 32px 64px rgba(20,184,166,0.15),0 0 40px rgba(20,184,166,0.18)}
+        .int-card:hover::after{opacity:.04}
+        .ava-ring{width:110px;height:110px;border-radius:50%;margin:0 auto 20px;position:relative;background:var(--grad2);padding:3px;box-shadow:0 8px 32px rgba(20,184,166,0.2)}
+        .ava-ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+        .ava-online{position:absolute;bottom:6px;right:6px;width:18px;height:18px;background:#10b981;border-radius:50%;border:3px solid #080b14;box-shadow:0 0 8px rgba(16,185,129,0.6)}
+        .int-card h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:4px}
+        .int-role{color:#5eead4;font-size:.8rem;font-weight:600;margin-bottom:16px}
+        .int-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+        .int-chips span{padding:3px 10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:20px;font-size:.7rem;color:var(--muted)}
+        .showcase-section{padding:100px 0}
+        .showcase-list{display:flex;flex-direction:column;gap:100px;max-width:1100px;margin:0 auto}
+        .sc-item{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;opacity:0;transform:translateY(50px);transition:opacity .8s ease,transform .8s ease}
+        .sc-item.visible{opacity:1;transform:translateY(0)}
+        .sc-item.flip{direction:rtl}
+        .sc-item.flip>*{direction:ltr}
+        .sc-img-wrap{border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--card-border);background:var(--card-bg);box-shadow:0 24px 64px rgba(0,0,0,0.5);transition:all .4s ease}
+        .sc-item:hover .sc-img-wrap{border-color:rgba(20,184,166,0.35);box-shadow:0 32px 80px rgba(20,184,166,0.2);transform:scale(1.02)}
+        .sc-img-wrap img{width:100%;height:auto;display:block}
+        .sc-copy .num-tag{font-size:.72rem;font-weight:700;color:#14b8a6;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;display:block}
+        .sc-copy h3{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:700;margin-bottom:16px;line-height:1.25}
+        .sc-copy p{font-size:1rem;color:var(--muted);line-height:1.8;margin-bottom:24px}
+        .tag-row{display:flex;flex-wrap:wrap;gap:8px}
+        .tchip{padding:5px 14px;background:rgba(20,184,166,0.1);border:1px solid rgba(20,184,166,0.25);border-radius:20px;font-size:.78rem;color:#5eead4;font-weight:600}
+        .feat-section{padding:100px 0}
+        .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto}
+        .feat-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--r-lg);padding:32px;transition:all .4s ease;position:relative;overflow:hidden}
+        .feat-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+        .feat-card:hover{transform:translateY(-8px);border-color:rgba(20,184,166,0.3);box-shadow:0 28px 56px rgba(0,0,0,0.35),0 8px 24px rgba(20,184,166,0.1)}
+        .feat-card:hover::after{transform:scaleX(1)}
+        .feat-icon{width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:20px}
+        .feat-card:nth-child(1) .feat-icon{background:linear-gradient(135deg,#667eea,#764ba2)}
+        .feat-card:nth-child(2) .feat-icon{background:linear-gradient(135deg,#f093fb,#f5576c)}
+        .feat-card:nth-child(3) .feat-icon{background:linear-gradient(135deg,#4facfe,#00f2fe)}
+        .feat-card:nth-child(4) .feat-icon{background:linear-gradient(135deg,#43e97b,#38f9d7)}
+        .feat-card:nth-child(5) .feat-icon{background:linear-gradient(135deg,#fa709a,#fee140)}
+        .feat-card:nth-child(6) .feat-icon{background:linear-gradient(135deg,#a18cd1,#fbc2eb)}
+        .feat-card h3{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:10px}
+        .feat-card p{font-size:.9rem;color:var(--muted);line-height:1.7}
+        .ftag{display:inline-block;margin-top:16px;padding:4px 12px;background:rgba(20,184,166,0.12);border-radius:20px;font-size:.72rem;font-weight:700;color:#14b8a6}
+        .stats-section{padding:80px 0}
+        .stats-band{background:linear-gradient(135deg,rgba(20,184,166,0.08),rgba(6,182,212,0.06));border-top:1px solid rgba(20,184,166,0.15);border-bottom:1px solid rgba(20,184,166,0.15);border-radius:var(--r-xl);padding:60px 40px;max-width:1100px;margin:0 auto}
+        .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
+        .stat-num{font-family:'Space Grotesk',sans-serif;font-size:3rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:8px}
+        .stat-label{font-size:.88rem;color:var(--muted);font-weight:500}
+        .cd-section{padding:90px 0;text-align:center}
+        .cd-row{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:36px}
+        .cd-block{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--r-md);padding:28px 36px;min-width:120px;transition:all var(--ease);position:relative;overflow:hidden}
+        .cd-block::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--grad)}
+        .cd-block:hover{transform:translateY(-6px);border-color:rgba(20,184,166,0.35);box-shadow:0 20px 40px rgba(20,184,166,0.12)}
+        .cd-num{font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:8px}
+        .cd-unit{font-size:.75rem;color:var(--dim);font-weight:600;text-transform:uppercase;letter-spacing:2px}
+        .footer{padding:56px 0 40px;border-top:1px solid rgba(255,255,255,0.06)}
+        .foot-inner{display:flex;flex-direction:column;align-items:center;gap:24px}
+        .foot-logo{display:flex;align-items:center;gap:10px}
+        .foot-logo-icon{width:36px;height:36px;background:var(--grad2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem}
+        .foot-logo-text{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .foot-tag{font-size:.85rem;color:var(--dim);text-align:center;max-width:480px}
+        .socials{display:flex;gap:12px}
+        .soc-btn{width:42px;height:42px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:1.05rem;text-decoration:none;transition:all var(--ease)}
+        .soc-btn:hover{background:var(--grad2);border-color:transparent;color:#fff;transform:translateY(-3px);box-shadow:0 8px 20px rgba(20,184,166,0.3)}
+        .foot-copy{font-size:.8rem;color:var(--dim)}
+        .fade-up{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+        .fade-up.visible{opacity:1;transform:translateY(0)}
+        @media(max-width:1024px){.int-grid{grid-template-columns:repeat(2,1fr)}.feat-grid{grid-template-columns:repeat(2,1fr)}.stats-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:768px){.ann-bar{padding:6px 12px}.ann-inner{gap:6px;font-size:.72rem;flex-wrap:nowrap}.ann-inner>span:nth-child(3){display:none}.pill-red{font-size:.6rem;padding:2px 7px}.pill-teal{font-size:.65rem;padding:2px 8px}.navbar{padding:0 16px;top:32px;height:56px}.nav-links{display:none}.hamburger{display:flex}.nav-logo-icon{width:32px;height:32px;font-size:.95rem}.nav-logo-text{font-size:1.1rem}.hero{padding:100px 0 60px}.hero-title{font-size:2.2rem}.hero-desc{font-size:1rem}.hero-stats{gap:28px}.video-section{padding:64px 0}.vframe-outer::after{inset:-16px}.chrome-url{display:none}.vmeta{display:none}.vfeats{grid-template-columns:1fr;gap:12px}.play-ring{width:68px;height:68px}.play-tri{border-width:12px 0 12px 20px;margin-left:4px}.int-section{padding:70px 0}.int-grid{grid-template-columns:repeat(2,1fr);gap:14px}.showcase-section{padding:70px 0}.showcase-list{gap:64px}.sc-item{grid-template-columns:1fr;gap:28px}.sc-item.flip{direction:ltr}.sc-copy{text-align:center}.tag-row{justify-content:center}.feat-section{padding:70px 0}.feat-grid{grid-template-columns:1fr}.stats-band{padding:40px 24px;border-radius:28px}.stats-grid{grid-template-columns:repeat(2,1fr);gap:24px}.stat-num{font-size:2.2rem}.cd-section{padding:64px 0}.cd-block{min-width:90px;padding:20px 24px}.cd-num{font-size:2rem}.footer{padding:48px 0 32px}}
+        @media(max-width:480px){.ann-bar{padding:5px 10px}.ann-inner{gap:5px;font-size:.68rem}.pill-teal{display:none}.navbar{top:28px;height:50px;padding:0 12px}.nav-logo-icon{width:28px;height:28px;font-size:.85rem;border-radius:8px}.nav-logo-text{font-size:1rem}.hero{padding:90px 0 50px}.hero-tag{font-size:.72rem;padding:6px 14px}.hero-actions{flex-direction:column}.btn-primary,.btn-ghost{width:100%;justify-content:center}.int-grid{grid-template-columns:1fr}.hero-stats{gap:20px}.cd-row{gap:10px}.cd-block{min-width:75px;padding:16px 18px}}
     </style>
 </head>
 <body>
-    <!-- Background Animation -->
-    <div class="bg-animation"></div>
+    <div class="bg-canvas"></div>
+    <div class="bg-grid"></div>
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
-
-    <!-- Construction Banner -->
-    <div class="construction-banner">
-        <span>
-            <span class="icon">�</span>
-            UNDER CONSTRUCTION
-            <span class="badge">Launching May 2026</span>
-        </span>
-    </div>
-
+    <div class="ann-bar"><div class="ann-inner"><span class="blink-dot"></span><span class="pill-red">Under Construction</span><span>Talkito AI is being built in public</span><span class="pill-teal">&#x1F680; Launching May 2026</span></div></div>
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-logo"><div class="nav-logo-icon">&#x1F399;&#xFE0F;</div><span class="nav-logo-text">Talkito AI</span></a>
+        <ul class="nav-links">
+            <li><a href="#demo-video">Demo</a></li>
+            <li><a href="#interviewers">Interviewers</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#countdown">Launch</a></li>
+            <li><a href="#countdown" class="nav-cta">Get Early Access</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </nav>
     <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <div class="logo">
-                <div class="logo-icon">🎙️</div>
-                <span class="logo-text">Talkito AI</span>
-            </div>
-            <p class="tagline">Your Personal AI Interview Coach</p>
-        </header>
-
-        <!-- Hero Section -->
         <section class="hero">
-            <h1>
-                Stop Practicing with Friends.<br>
-                <span class="highlight">Practice with AI That Doesn't Sugarcoat.</span>
-            </h1>
-            <p>
-                Real-time behavioral analysis, brutally honest feedback, and human-like AI interviewers 
-                that prepare you for the pressure of actual interviews. Because nice feedback doesn't get you hired.
-            </p>
-
-            <!-- Release Badge -->
-            <div class="release-badge">
-                🚀 Launching May 2026
+            <div class="hero-tag"><span class="blink-dot"></span>AI-Powered Interview Coach</div>
+            <h1 class="hero-title">Stop Practicing with Friends.<br><em>Practice with AI That Doesn't&nbsp;Sugarcoat.</em></h1>
+            <p class="hero-desc">Real-time behavioral analysis, brutally honest feedback, and human-like AI interviewers that prepare you for the pressure of actual interviews.</p>
+            <div class="hero-actions">
+                <a href="#demo-video" class="btn-primary">&#9654;&nbsp;&nbsp;Watch Demo</a>
+                <a href="#features" class="btn-ghost">Explore Features &rarr;</a>
+            </div>
+            <div class="hero-stats">
+                <div><div class="hs-num">35+</div><div class="hs-label">Features</div></div>
+                <div><div class="hs-num">4</div><div class="hs-label">AI Personas</div></div>
+                <div><div class="hs-num">478</div><div class="hs-label">Face Landmarks</div></div>
+                <div><div class="hs-num">&lt;2s</div><div class="hs-label">Response Time</div></div>
             </div>
         </section>
-
-        <!-- AI Interviewers Section -->
-        <section class="interviewers-section fade-in">
-            <h2 class="section-title">Meet Your AI Interviewers</h2>
-            <p class="section-subtitle">Human-like faces, voices, and personalities</p>
-
-            <div class="interviewers-grid">
-                <div class="interviewer-card">
-                    <div class="interviewer-avatar">
-                        <img src="images/vandan.png" alt="Vandan" onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=Vandan'">
-                    </div>
-                    <h3>Vandan</h3>
-                    <p class="interviewer-role">Technical Recruiter</p>
-                    <div class="interviewer-tags">
-                        <span>Friendly</span>
-                        <span>Full-Stack</span>
-                        <span>AI/ML</span>
-                    </div>
-                </div>
-
-                <div class="interviewer-card">
-                    <div class="interviewer-avatar">
-                        <img src="images/shravani.png" alt="Shravani" onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=Shravani'">
-                    </div>
-                    <h3>Shravani</h3>
-                    <p class="interviewer-role">Senior Chartered Accountant</p>
-                    <div class="interviewer-tags">
-                        <span>Precise</span>
-                        <span>Finance</span>
-                        <span>Audit</span>
-                    </div>
-                </div>
-
-                <div class="interviewer-card">
-                    <div class="interviewer-avatar">
-                        <img src="images/sarah.png" alt="Sarah" onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah'">
-                    </div>
-                    <h3>Sarah</h3>
-                    <p class="interviewer-role">HR Manager</p>
-                    <div class="interviewer-tags">
-                        <span>Empathetic</span>
-                        <span>Cultural Fit</span>
-                        <span>UI/UX</span>
-                    </div>
-                </div>
-
-                <div class="interviewer-card">
-                    <div class="interviewer-avatar">
-                        <img src="images/david.png" alt="David" onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=David'">
-                    </div>
-                    <h3>David</h3>
-                    <p class="interviewer-role">Senior Technical Recruiter</p>
-                    <div class="interviewer-tags">
-                        <span>Technical</span>
-                        <span>System Design</span>
-                        <span>Backend</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Screenshots Section -->
-        <section class="screenshots-section fade-in">
-            <div class="screenshots-intro">
-                <h2 class="section-title">Sneak Peek</h2>
-                <p class="section-subtitle">A glimpse of what's coming</p>
-                <div class="screenshots-note">
-                    <span class="sparkle">✨</span> More exciting features are in development and will be revealed soon. Stay tuned! <span class="sparkle">✨</span>
-                </div>
-            </div>
-
-            <div class="screenshots-container">
-                <!-- 1. Real-time Behavioral Analysis - Image Left -->
-                <div class="screenshot-item">
-                    <div class="screenshot-img-wrapper">
-                        <img src="images/talkingwithinterviewer.png" alt="Real-time Behavioral Analysis">
-                    </div>
-                    <div class="screenshot-content">
-                        <div class="screenshot-icon">👁️</div>
-                        <h3>Real-time Behavioral Analysis</h3>
-                        <p>
-                            Watch your confidence score, eye contact, posture, and body language analyzed in real-time. 
-                            Get instant feedback on your behavioral signals while you answer questions.
-                        </p>
-                        <div class="screenshot-tags">
-                            <span class="screenshot-tag">MediaPipe</span>
-                            <span class="screenshot-tag">Live Feedback</span>
-                            <span class="screenshot-tag">478 Landmarks</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2. Choose Your Interviewer - Image Right -->
-                <div class="screenshot-item reverse">
-                    <div class="screenshot-img-wrapper">
-                        <img src="images/interviewerpersonas.png" alt="Choose Your Interviewer">
-                    </div>
-                    <div class="screenshot-content">
-                        <div class="screenshot-icon">�</div>
-                        <h3>Choose Your Interviewer</h3>
-                        <p>
-                            Pick from 4 unique AI personas — friendly Vandan, empathetic Sarah, strict David, or precise Shravani. 
-                            Each has their own interview style, voice, and personality traits.
-                        </p>
-                        <div class="screenshot-tags">
-                            <span class="screenshot-tag">4 Personas</span>
-                            <span class="screenshot-tag">Neural Voices</span>
-                            <span class="screenshot-tag">Custom Styles</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3. Multiple Practice Modes - Image Left -->
-                <div class="screenshot-item">
-                    <div class="screenshot-img-wrapper">
-                        <img src="images/modes.png" alt="Multiple Practice Modes">
-                    </div>
-                    <div class="screenshot-content">
-                        <div class="screenshot-icon">🎮</div>
-                        <h3>Multiple Practice Modes</h3>
-                        <p>
-                            Practice Mode for relaxed sessions, full Placement Drive simulation, or quick Elevator Pitch challenges. 
-                            Choose the mode that fits your preparation needs.
-                        </p>
-                        <div class="screenshot-tags">
-                            <span class="screenshot-tag">Practice Mode</span>
-                            <span class="screenshot-tag">Placement Drive</span>
-                            <span class="screenshot-tag">Elevator Pitch</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4. Live DSA Challenges - Image Right -->
-                <div class="screenshot-item reverse">
-                    <div class="screenshot-img-wrapper">
-                        <img src="images/dsamodal.png" alt="Live DSA Challenges">
-                    </div>
-                    <div class="screenshot-content">
-                        <div class="screenshot-icon">💻</div>
-                        <h3>Live DSA Challenges</h3>
-                        <p>
-                            When the interviewer asks you to solve a coding problem, a Monaco editor pops up instantly. 
-                            Write code in JavaScript, Python, Java, or C++, and get AI-evaluated feedback.
-                        </p>
-                        <div class="screenshot-tags">
-                            <span class="screenshot-tag">Monaco Editor</span>
-                            <span class="screenshot-tag">4 Languages</span>
-                            <span class="screenshot-tag">AI Evaluation</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="features-section fade-in">
-            <h2 class="section-title">Why Talkito is Different</h2>
-            <p class="section-subtitle">Not just Q&A — Full multimodal behavioral analysis</p>
-
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">👁️</div>
-                    <h3>Real-Time Eye Contact Tracking</h3>
-                    <p>MediaPipe tracks 478 facial landmarks to detect exactly when you break eye contact, look nervous, or seem unsure.</p>
-                    <span class="feature-tag">Computer Vision</span>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🎭</div>
-                    <h3>4 AI Interviewer Personas</h3>
-                    <p>Choose from friendly Vandan, strict David, empathetic Sarah, or precise Shravani — each with unique voices and styles.</p>
-                    <span class="feature-tag">Persona AI</span>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🔥</div>
-                    <h3>Brutally Honest Feedback</h3>
-                    <p>"You said 'um' 7 times in 2 minutes" — We tell you exactly what's wrong, not what you want to hear.</p>
-                    <span class="feature-tag">No Sugarcoating</span>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Voice & Anxiety Analysis</h3>
-                    <p>Librosa analyzes your pitch variance, speaking pace, and nervousness score from your voice patterns.</p>
-                    <span class="feature-tag">Audio ML</span>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🏢</div>
-                    <h3>Company-Specific Mode</h3>
-                    <p>Practice Google STAR interviews, Amazon Leadership Principles, or TCS HR rounds with tailored questioning styles.</p>
-                    <span class="feature-tag">Targeted Prep</span>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🚨</div>
-                    <h3>Anti-Cheat Detection</h3>
-                    <p>Tab switching? Multiple faces? Background voices? We catch it all and flag it — just like real proctored interviews.</p>
-                    <span class="feature-tag">Proctoring</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section class="stats-section fade-in">
-            <div class="container">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <h3>35+</h3>
-                        <p>Features</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>4</h3>
-                        <p>AI Personas</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>478</h3>
-                        <p>Facial Landmarks</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>2s</h3>
-                        <p>Response Time</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Countdown Section -->
-        <section class="countdown-section fade-in">
-            <p class="countdown-label">Countdown to Launch</p>
-            <div class="countdown" id="countdown">
-                <div class="countdown-item">
-                    <div class="countdown-number" id="days">--</div>
-                    <div class="countdown-unit">Days</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="hours">--</div>
-                    <div class="countdown-unit">Hours</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="minutes">--</div>
-                    <div class="countdown-unit">Minutes</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="seconds">--</div>
-                    <div class="countdown-unit">Seconds</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <p>© 2026 Talkito AI. Built with ❤️ for interview warriors.</p>
-            <div class="social-links">
-                <a href="#" title="Twitter">𝕏</a>
-                <a href="#" title="LinkedIn">in</a>
-                <a href="#" title="GitHub">⌨</a>
-                <a href="#" title="Discord">💬</a>
-            </div>
-        </footer>
     </div>
-
+    <div class="divider"></div>
+    <section class="video-section fade-up" id="demo-video">
+        <div class="container">
+            <div class="section-centered">
+                <span class="eyebrow"><span class="blink-dot"></span>&nbsp;Live Demo</span>
+                <h2 class="section-title">See Talkito AI in&nbsp;Action</h2>
+                <p class="section-sub">Watch a real mock interview session with live behavioral analysis, AI responses, and instant feedback.</p>
+            </div>
+            <div class="vframe-outer">
+                <div class="vborder"></div>
+                <div class="vcard">
+                    <div class="chrome-bar">
+                        <div class="chrome-dots"><span></span><span></span><span></span></div>
+                        <div class="chrome-url"><span class="lock">&#x1F512;</span>app.talkito.ai / interview / demo-session</div>
+                    </div>
+                    <div class="vwrap">
+                        <video id="demoVideo" preload="metadata" playsinline controls>
+                            <source src="demovid/VN20260301_223329.mp4" type="video/mp4">
+                        </video>
+                        <div class="play-overlay" id="playOverlay"><div class="play-ring"><div class="play-tri"></div></div></div>
+                    </div>
+                    <div class="vinfo-bar">
+                        <div class="vlabel"><span class="bdemo">Demo</span>Talkito AI &mdash; Mock Interview Session</div>
+                        <div class="vmeta"><span>&#x1F399;&#xFE0F; AI Voice</span><span>&#x1F441;&#xFE0F; 478 Landmarks</span><span>&#x1F4CA; Live Scoring</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="vfeats">
+                <div class="vfeat"><div class="vfeat-icon">&#x1F441;&#xFE0F;</div><div class="vfeat-text"><h4>Real-time Analysis</h4><p>Eye contact, posture &amp; confidence scored live during the interview</p></div></div>
+                <div class="vfeat"><div class="vfeat-icon">&#x1F3AD;</div><div class="vfeat-text"><h4>Human-like AI Interviewer</h4><p>Neural voice + realistic persona with adaptive questioning</p></div></div>
+                <div class="vfeat"><div class="vfeat-icon">&#x1F4CA;</div><div class="vfeat-text"><h4>Instant Feedback Report</h4><p>Detailed score breakdown with actionable improvements after each session</p></div></div>
+            </div>
+        </div>
+    </section>
+    <div class="divider"></div>
+    <section class="int-section fade-up" id="interviewers">
+        <div class="container">
+            <div class="section-centered">
+                <span class="eyebrow">Meet the Team</span>
+                <h2 class="section-title">Your AI Interviewers</h2>
+                <p class="section-sub">Human-like faces, neural voices, and distinct personalities &mdash; choose who challenges you.</p>
+            </div>
+            <div class="int-grid">
+                <div class="int-card"><div class="ava-ring"><img src="images/vandan.png" alt="Vandan"><div class="ava-online"></div></div><h3>Vandan</h3><p class="int-role">Technical Recruiter</p><div class="int-chips"><span>Friendly</span><span>Full-Stack</span><span>AI/ML</span></div></div>
+                <div class="int-card"><div class="ava-ring"><img src="images/shravani.png" alt="Shravani"><div class="ava-online"></div></div><h3>Shravani</h3><p class="int-role">Senior Chartered Accountant</p><div class="int-chips"><span>Precise</span><span>Finance</span><span>Audit</span></div></div>
+                <div class="int-card"><div class="ava-ring"><img src="images/sarah.png" alt="Sarah"><div class="ava-online"></div></div><h3>Sarah</h3><p class="int-role">HR Manager</p><div class="int-chips"><span>Empathetic</span><span>Cultural Fit</span><span>UI/UX</span></div></div>
+                <div class="int-card"><div class="ava-ring"><img src="images/david.png" alt="David"><div class="ava-online"></div></div><h3>David</h3><p class="int-role">Senior Technical Recruiter</p><div class="int-chips"><span>Strict</span><span>System Design</span><span>Backend</span></div></div>
+            </div>
+        </div>
+    </section>
+    <div class="divider"></div>
+    <section class="showcase-section" id="showcase">
+        <div class="container">
+            <div class="section-centered">
+                <span class="eyebrow">Sneak Peek</span>
+                <h2 class="section-title">A Glimpse of What's Coming</h2>
+                <p class="section-sub" style="margin-bottom:72px">More exciting features are in active development. Stay tuned! &#x2728;</p>
+            </div>
+            <div class="showcase-list">
+                <div class="sc-item"><div class="sc-img-wrap"><img src="images/talkingwithinterviewer.png" alt="Real-time Behavioral Analysis"></div><div class="sc-copy"><span class="num-tag">01 &mdash; Computer Vision</span><h3>Real-time <span class="tg">Behavioral Analysis</span></h3><p>Watch your confidence score, eye contact, posture, and body language analyzed in real-time. Get instant feedback on your behavioral signals while you answer questions.</p><div class="tag-row"><span class="tchip">MediaPipe</span><span class="tchip">Live Feedback</span><span class="tchip">478 Landmarks</span></div></div></div>
+                <div class="sc-item flip"><div class="sc-img-wrap"><img src="images/interviewerpersonas.png" alt="Choose Your Interviewer"></div><div class="sc-copy"><span class="num-tag">02 &mdash; Persona Engine</span><h3>Choose Your <span class="tg">Interviewer</span></h3><p>Pick from 4 unique AI personas &mdash; friendly Vandan, empathetic Sarah, strict David, or precise Shravani. Each has their own interview style, voice, and personality traits.</p><div class="tag-row"><span class="tchip">4 Personas</span><span class="tchip">Neural Voices</span><span class="tchip">Custom Styles</span></div></div></div>
+                <div class="sc-item"><div class="sc-img-wrap"><img src="images/modes.png" alt="Multiple Practice Modes"></div><div class="sc-copy"><span class="num-tag">03 &mdash; Practice Modes</span><h3>Multiple <span class="tg">Practice Modes</span></h3><p>Practice Mode for relaxed sessions, full Placement Drive simulation, or quick Elevator Pitch challenges. Choose the mode that fits your preparation needs.</p><div class="tag-row"><span class="tchip">Practice Mode</span><span class="tchip">Placement Drive</span><span class="tchip">Elevator Pitch</span></div></div></div>
+                <div class="sc-item flip"><div class="sc-img-wrap"><img src="images/dsamodal.png" alt="Live DSA Challenges"></div><div class="sc-copy"><span class="num-tag">04 &mdash; Code Editor</span><h3>Live <span class="tg">DSA Challenges</span></h3><p>When the interviewer asks you to solve a coding problem, a Monaco editor pops up instantly. Write code in JavaScript, Python, Java, or C++, and get AI-evaluated feedback.</p><div class="tag-row"><span class="tchip">Monaco Editor</span><span class="tchip">4 Languages</span><span class="tchip">AI Evaluation</span></div></div></div>
+            </div>
+        </div>
+    </section>
+    <div class="divider"></div>
+    <section class="feat-section fade-up" id="features">
+        <div class="container">
+            <div class="section-centered">
+                <span class="eyebrow">Why Talkito</span>
+                <h2 class="section-title">Not Just Q&amp;A &mdash; Full Multimodal<br><span class="tg">Behavioral Intelligence</span></h2>
+                <p class="section-sub">Every signal matters. We track them all.</p>
+            </div>
+            <div class="feat-grid">
+                <div class="feat-card"><div class="feat-icon">&#x1F441;&#xFE0F;</div><h3>Real-Time Eye Contact Tracking</h3><p>MediaPipe tracks 478 facial landmarks to detect exactly when you break eye contact, look nervous, or seem unsure.</p><span class="ftag">Computer Vision</span></div>
+                <div class="feat-card"><div class="feat-icon">&#x1F3AD;</div><h3>4 AI Interviewer Personas</h3><p>Choose from friendly Vandan, strict David, empathetic Sarah, or precise Shravani &mdash; each with unique voices and styles.</p><span class="ftag">Persona AI</span></div>
+                <div class="feat-card"><div class="feat-icon">&#x1F525;</div><h3>Brutally Honest Feedback</h3><p>"You said 'um' 7 times in 2 minutes." We tell you exactly what's wrong, not what you want to hear.</p><span class="ftag">No Sugarcoating</span></div>
+                <div class="feat-card"><div class="feat-icon">&#x1F4CA;</div><h3>Voice &amp; Anxiety Analysis</h3><p>Librosa analyzes your pitch variance, speaking pace, and nervousness score from your voice patterns.</p><span class="ftag">Audio ML</span></div>
+                <div class="feat-card"><div class="feat-icon">&#x1F3E2;</div><h3>Company-Specific Mode</h3><p>Practice Google STAR interviews, Amazon Leadership Principles, or TCS HR rounds with tailored questioning styles.</p><span class="ftag">Targeted Prep</span></div>
+                <div class="feat-card"><div class="feat-icon">&#x1F6A8;</div><h3>Anti-Cheat Detection</h3><p>Tab switching? Multiple faces? Background voices? We catch it all and flag it &mdash; just like real proctored interviews.</p><span class="ftag">Proctoring</span></div>
+            </div>
+        </div>
+    </section>
+    <div class="divider"></div>
+    <section class="stats-section fade-up">
+        <div class="container">
+            <div class="stats-band">
+                <div class="stats-grid">
+                    <div><div class="stat-num">35+</div><div class="stat-label">Features Built</div></div>
+                    <div><div class="stat-num">4</div><div class="stat-label">AI Personas</div></div>
+                    <div><div class="stat-num">478</div><div class="stat-label">Facial Landmarks</div></div>
+                    <div><div class="stat-num">&lt;2s</div><div class="stat-label">AI Response Time</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="divider"></div>
+    <section class="cd-section fade-up" id="countdown">
+        <div class="container">
+            <div class="section-centered">
+                <span class="eyebrow">Almost There</span>
+                <h2 class="section-title">Launching in</h2>
+                <p class="section-sub">Be the first to experience the future of interview preparation.</p>
+            </div>
+            <div class="cd-row">
+                <div class="cd-block"><div class="cd-num" id="days">--</div><div class="cd-unit">Days</div></div>
+                <div class="cd-block"><div class="cd-num" id="hours">--</div><div class="cd-unit">Hours</div></div>
+                <div class="cd-block"><div class="cd-num" id="minutes">--</div><div class="cd-unit">Minutes</div></div>
+                <div class="cd-block"><div class="cd-num" id="seconds">--</div><div class="cd-unit">Seconds</div></div>
+            </div>
+        </div>
+    </section>
+    <div class="divider"></div>
+    <footer class="footer">
+        <div class="container">
+            <div class="foot-inner">
+                <div class="foot-logo"><div class="foot-logo-icon">&#x1F399;&#xFE0F;</div><span class="foot-logo-text">Talkito AI</span></div>
+                <p class="foot-tag">Your Personal AI Interview Coach &mdash; Because nice feedback doesn't get you hired.</p>
+                <div class="socials">
+                    <a class="soc-btn" href="#" title="Twitter">X</a>
+                    <a class="soc-btn" href="#" title="LinkedIn">in</a>
+                    <a class="soc-btn" href="#" title="GitHub">GH</a>
+                    <a class="soc-btn" href="#" title="Discord">DC</a>
+                </div>
+                <p class="foot-copy">&copy; 2026 Talkito AI. Built with &#x2764;&#xFE0F; for interview warriors.</p>
+            </div>
+        </div>
+    </footer>
     <script>
-        // Countdown Timer
-        function updateCountdown() {
-            const launchDate = new Date('May 1, 2026 00:00:00').getTime();
-            const now = new Date().getTime();
-            const distance = launchDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-        }
-
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-
-        // Scroll Animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-        document.querySelectorAll('.screenshot-item').forEach(el => observer.observe(el));
-
-        // Parallax effect for orbs
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-            
-            document.querySelectorAll('.orb').forEach((orb, i) => {
-                const speed = (i + 1) * 20;
-                orb.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
-            });
-        });
+        if(window.location.hash){history.replaceState(null,null,' ');window.scrollTo(0,0)}
+        var nb=document.getElementById('navbar');
+        window.addEventListener('scroll',function(){nb.classList.toggle('scrolled',window.scrollY>20)});
+        var vid=document.getElementById('demoVideo'),ov=document.getElementById('playOverlay');
+        if(vid&&ov){ov.addEventListener('click',function(){vid.play()});vid.addEventListener('playing',function(){ov.classList.add('hidden')});vid.addEventListener('pause',function(){ov.classList.remove('hidden')})}
+        function tick(){var d=new Date('May 1, 2026 00:00:00').getTime()-Date.now();if(d<0)d=0;document.getElementById('days').textContent=String(Math.floor(d/864e5)).padStart(2,'0');document.getElementById('hours').textContent=String(Math.floor(d%864e5/36e5)).padStart(2,'0');document.getElementById('minutes').textContent=String(Math.floor(d%36e5/6e4)).padStart(2,'0');document.getElementById('seconds').textContent=String(Math.floor(d%6e4/1e3)).padStart(2,'0')}
+        tick();setInterval(tick,1e3);
+        var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.08,rootMargin:'0px 0px -60px 0px'});
+        document.querySelectorAll('.fade-up,.sc-item').forEach(function(el){io.observe(el)});
+        document.addEventListener('mousemove',function(e){var rx=e.clientX/window.innerWidth-.5,ry=e.clientY/window.innerHeight-.5;document.querySelectorAll('.orb').forEach(function(o,i){var s=(i+1)*18;o.style.transform='translate('+rx*s+'px,'+ry*s+'px)'})});
     </script>
 </body>
 </html>
