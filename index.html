@@ -78,7 +78,7 @@
         .chrome-url{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:5px 14px;font-family:monospace;font-size:.76rem;color:rgba(255,255,255,0.35);display:flex;align-items:center;gap:8px}
         .chrome-url .lock{color:#14b8a6;font-size:.72rem}
         .vwrap{position:relative;background:#000;line-height:0}
-        .vwrap video{width:100%;display:block;max-height:560px;object-fit:contain;background:#000}
+        .vwrap iframe{width:100%;height:560px;border:none;display:block;background:#000}
         .play-overlay{position:absolute;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;background:rgba(8,11,20,0.5);backdrop-filter:blur(3px);cursor:pointer;transition:opacity .3s ease}
         .play-overlay.hidden{opacity:0;pointer-events:none}
         .play-ring{width:88px;height:88px;background:var(--grad2);border-radius:50%;display:flex;align-items:center;justify-content:center;animation:ripple 2s ease-out infinite;transition:transform .2s ease}
@@ -164,7 +164,7 @@
         .fade-up{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
         .fade-up.visible{opacity:1;transform:translateY(0)}
         @media(max-width:1024px){.int-grid{grid-template-columns:repeat(2,1fr)}.feat-grid{grid-template-columns:repeat(2,1fr)}.stats-grid{grid-template-columns:repeat(2,1fr)}}
-        @media(max-width:768px){.ann-bar{padding:6px 12px}.ann-inner{gap:6px;font-size:.72rem;flex-wrap:nowrap}.ann-inner>span:nth-child(3){display:none}.pill-red{font-size:.6rem;padding:2px 7px}.pill-teal{font-size:.65rem;padding:2px 8px}.navbar{padding:0 16px;top:32px;height:56px}.nav-links{display:none}.hamburger{display:flex}.nav-logo-icon{width:32px;height:32px;font-size:.95rem}.nav-logo-text{font-size:1.1rem}.hero{padding:100px 0 60px}.hero-title{font-size:2.2rem}.hero-desc{font-size:1rem}.hero-stats{gap:28px}.video-section{padding:64px 0}.vframe-outer::after{inset:-16px}.chrome-url{display:none}.vmeta{display:none}.vfeats{grid-template-columns:1fr;gap:12px}.play-ring{width:68px;height:68px}.play-tri{border-width:12px 0 12px 20px;margin-left:4px}.int-section{padding:70px 0}.int-grid{grid-template-columns:repeat(2,1fr);gap:14px}.showcase-section{padding:70px 0}.showcase-list{gap:64px}.sc-item{grid-template-columns:1fr;gap:28px}.sc-item.flip{direction:ltr}.sc-copy{text-align:center}.tag-row{justify-content:center}.feat-section{padding:70px 0}.feat-grid{grid-template-columns:1fr}.stats-band{padding:40px 24px;border-radius:28px}.stats-grid{grid-template-columns:repeat(2,1fr);gap:24px}.stat-num{font-size:2.2rem}.cd-section{padding:64px 0}.cd-block{min-width:90px;padding:20px 24px}.cd-num{font-size:2rem}.footer{padding:48px 0 32px}}
+        @media(max-width:768px){.ann-bar{padding:6px 12px}.ann-inner{gap:6px;font-size:.72rem;flex-wrap:nowrap}.ann-inner>span:nth-child(3){display:none}.pill-red{font-size:.6rem;padding:2px 7px}.pill-teal{font-size:.65rem;padding:2px 8px}.navbar{padding:0 16px;top:32px;height:56px}.nav-links{display:none}.hamburger{display:flex}.nav-logo-icon{width:32px;height:32px;font-size:.95rem}.nav-logo-text{font-size:1.1rem}.hero{padding:100px 0 60px}.hero-title{font-size:2.2rem}.hero-desc{font-size:1rem}.hero-stats{gap:28px}.video-section{padding:64px 0}.vframe-outer::after{inset:-16px}.chrome-url{display:none}.vmeta{display:none}.vwrap iframe{height:220px}.vfeats{grid-template-columns:1fr;gap:12px}.play-ring{width:68px;height:68px}.play-tri{border-width:12px 0 12px 20px;margin-left:4px}.int-section{padding:70px 0}.int-grid{grid-template-columns:repeat(2,1fr);gap:14px}.showcase-section{padding:70px 0}.showcase-list{gap:64px}.sc-item{grid-template-columns:1fr;gap:28px}.sc-item.flip{direction:ltr}.sc-copy{text-align:center}.tag-row{justify-content:center}.feat-section{padding:70px 0}.feat-grid{grid-template-columns:1fr}.stats-band{padding:40px 24px;border-radius:28px}.stats-grid{grid-template-columns:repeat(2,1fr);gap:24px}.stat-num{font-size:2.2rem}.cd-section{padding:64px 0}.cd-block{min-width:90px;padding:20px 24px}.cd-num{font-size:2rem}.footer{padding:48px 0 32px}}
         @media(max-width:480px){.ann-bar{padding:5px 10px}.ann-inner{gap:5px;font-size:.68rem}.pill-teal{display:none}.navbar{top:28px;height:50px;padding:0 12px}.nav-logo-icon{width:28px;height:28px;font-size:.85rem;border-radius:8px}.nav-logo-text{font-size:1rem}.hero{padding:90px 0 50px}.hero-tag{font-size:.72rem;padding:6px 14px}.hero-actions{flex-direction:column}.btn-primary,.btn-ghost{width:100%;justify-content:center}.int-grid{grid-template-columns:1fr}.hero-stats{gap:20px}.cd-row{gap:10px}.cd-block{min-width:75px;padding:16px 18px}}
     </style>
 </head>
@@ -219,10 +219,12 @@
                         <div class="chrome-url"><span class="lock">&#x1F512;</span>app.talkito.ai / interview / demo-session</div>
                     </div>
                     <div class="vwrap">
-                        <video id="demoVideo" preload="metadata" playsinline controls>
-                            <source src="demovid/VN20260301_223329.mp4" type="video/mp4">
-                        </video>
-                        <div class="play-overlay" id="playOverlay"><div class="play-ring"><div class="play-tri"></div></div></div>
+                        <iframe id="demoVideo"
+                            src="https://drive.google.com/file/d/1_Hv39u7lxrMkWpB8FhQ9sNrSlyEfI-AN/preview"
+                            allow="autoplay"
+                            allowfullscreen
+                            style="width:100%;height:560px;border:none;display:block;background:#000;">
+                        </iframe>
                     </div>
                     <div class="vinfo-bar">
                         <div class="vlabel"><span class="bdemo">Demo</span>Talkito AI &mdash; Mock Interview Session</div>
@@ -335,10 +337,7 @@
     <script>
         if(window.location.hash){history.replaceState(null,null,' ');window.scrollTo(0,0)}
         var nb=document.getElementById('navbar');
-        window.addEventListener('scroll',function(){nb.classList.toggle('scrolled',window.scrollY>20)});
-        var vid=document.getElementById('demoVideo'),ov=document.getElementById('playOverlay');
-        if(vid&&ov){ov.addEventListener('click',function(){vid.play()});vid.addEventListener('playing',function(){ov.classList.add('hidden')});vid.addEventListener('pause',function(){ov.classList.remove('hidden')})}
-        function tick(){var d=new Date('May 1, 2026 00:00:00').getTime()-Date.now();if(d<0)d=0;document.getElementById('days').textContent=String(Math.floor(d/864e5)).padStart(2,'0');document.getElementById('hours').textContent=String(Math.floor(d%864e5/36e5)).padStart(2,'0');document.getElementById('minutes').textContent=String(Math.floor(d%36e5/6e4)).padStart(2,'0');document.getElementById('seconds').textContent=String(Math.floor(d%6e4/1e3)).padStart(2,'0')}
+        window.addEventListener('scroll',function(){nb.classList.toggle('scrolled',window.scrollY>20)});        function tick(){var d=new Date('May 1, 2026 00:00:00').getTime()-Date.now();if(d<0)d=0;document.getElementById('days').textContent=String(Math.floor(d/864e5)).padStart(2,'0');document.getElementById('hours').textContent=String(Math.floor(d%864e5/36e5)).padStart(2,'0');document.getElementById('minutes').textContent=String(Math.floor(d%36e5/6e4)).padStart(2,'0');document.getElementById('seconds').textContent=String(Math.floor(d%6e4/1e3)).padStart(2,'0')}
         tick();setInterval(tick,1e3);
         var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.08,rootMargin:'0px 0px -60px 0px'});
         document.querySelectorAll('.fade-up,.sc-item').forEach(function(el){io.observe(el)});
